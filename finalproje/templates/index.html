@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encode Decode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Encode / Decode</h1>
+    <form method="post">
+        <textarea name="text" rows="4" cols="50" placeholder="Obje giriniz">{{ originaltext if originaltext else '' }}</textarea><br>
+        <label for="method">Şifreleme türünü belirleyiniz :</label>
+        <select name="method" id="method">
+            <option value="base64" {% if method == 'base64' %}selected{% endif %}>Base64</option>
+            <option value="url" {% if method == 'url' %}selected{% endif %}>URL Encoding</option>
+            <option value="rot13" {% if method == 'rot13' %}selected{% endif %}>ROT13</option>
+        </select><br>
+        <button type="submit" name="encode">Encode</button>
+        <button type="submit" name="decode">Decode</button>
+    </form>
+    {% if result %}
+        <h2>Sonuç:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
